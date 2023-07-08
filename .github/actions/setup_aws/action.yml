@@ -4,6 +4,12 @@ inputs:
   image_tag:
     description: "AWS ECR image tag"
     required: false
+  aws-access-key-id:
+    required: true
+  aws-secret-access-key:
+    required: true
+  aws-region:
+    required: true
 runs:
   using: "composite"
   steps:
