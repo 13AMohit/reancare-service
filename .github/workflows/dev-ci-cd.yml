@@ -48,7 +48,7 @@ jobs:
           
              
       - name: setup aws and build image
-        uses: .github/actions/setup_aws
+        uses: ./.github/actions/setup_aws
         with:
           image_tag: ${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
 
