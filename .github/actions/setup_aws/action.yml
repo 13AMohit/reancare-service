@@ -3,7 +3,7 @@ description: "Config AWS"
 inputs:
   image_tag:
     description: "AWS ECR image tag"
-    required: true
+    required: false
 runs:
   using: "composite"
   steps:
