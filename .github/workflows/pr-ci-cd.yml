@@ -17,50 +17,19 @@ on:
   workflow_dispatch:
     
 jobs:
-#   CodeScan-ESLint:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v3
-#         with:
-#           fetch-depth: 0
-
-#       - name: Lint Code Base
-#         uses: docker://ghcr.io/github/super-linter:latest
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           LINTER_RULES_PATH: /
-#           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
-#           VALIDATE_TYPESCRIPT_ES: true
-#           VALIDATE_ALL_CODEBASE: false
-#           DEFAULT_BRANCH: develop
-
-  Build-Docker-Image:
-    runs-on: ubuntu-latest
-#       group: Default Larger Runners
-#       labels: ubuntu-latest-4-cores
-
+  testing:
+    runs-on: ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Declare some variables
-        id: vars
-        shell: bash
-        run: |
-          # echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed "s/\\//-/g")"
-          # echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          # echo "::set-output name=repo_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
-          echo "branch=$(echo ${GITHUB_REF#refs/heads/} | sed "s/\\//-/g")" >> $GITHUB_OUTPUT
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "repo_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_OUTPUT
-      - name: Another step
-        run: |
-          echo "Branch: ${{ steps.vars.outputs.branch }}"
-          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
-          echo "Repo: ${{ steps.vars.outputs.repo_name }}"
-          
-      - name: setup aws and build image
-        uses: .github/actions/setup_aws
+      
+      - name: Configure AWS credentials
+        id: config-aws-creds
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          image_tag: ${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ASSUME_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-session-name: ReanCIDCSession
+          mask-aws-account-id: 'no'
+      - name: checking auth
+        run: aws s3 ls
