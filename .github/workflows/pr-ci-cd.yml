@@ -28,7 +28,7 @@ jobs:
         id: config-aws-creds
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ASSUME_ROLE }}
+          role-to-assume: arn:aws:iam::167414264568:role/github-cicd-OIDC-role
           aws-region: ${{ secrets.AWS_REGION }}
           role-session-name: ReanCIDCSession
           mask-aws-account-id: 'no'
