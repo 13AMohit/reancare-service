@@ -30,7 +30,7 @@ jobs:
         uses: duplocloud/ghactions-aws-jit@master
         with:
           duplo_host: https://reanfoundation.duplocloud.net/
-          duplo_token: AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAgI63lwood0KmMeDJiIrR0wAAAAACAAAAAAAQZgAAAAEAACAAAAAaeB_2-e4c9vlt3FIbHcBv7U-EVlr6fJrfBUSJ13INXAAAAAAOgAAAAAIAACAAAADbfQEVenWC_6gAbXVdm3NW-j15HTEdoauyZZLETe3rRaAAAABRk2Xsbyj9x7gFyWDolzLDS_iJr0JtZZ9PgLzSngnuoz00j_80bp8Qel7VRavgJUoXIZG7GzUi9JQkQupqZzy1DeOUR6tiz23XdYnZI5kYcdg9sCZUA31uD7F87zgwY59IQ3e-obcYUnDYG92f8Jf-IHg2M-HwKDw_O4n3mea1nxXVzRkYj92HCrpurRnjfGVHFlzJdukdRatemEWbeSx3QAAAABGzfDEAPm6TLKLxpp2oSCk4cwnNmdmRrHZm7fB0klMwn69h8_rtGDsBPDA6LkgBDGWQ4-LVhDy6Sx4m513Am1A
+          duplo_token: AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAgI63lwood0KmMeDJiIrR0wAAAAACAAAAAAAQZgAAAAEAACAAAAAUdzhxZnIbrRV7Sh9mMDZOGNy2FUa0_NjXUxrq8JgmEQAAAAAOgAAAAAIAACAAAADkhGqkXURefifRlUnGnLO0P5uGqE9wuqSiYqxC4jcCoqAAAACYSTzEXtqDmCNdj2d4SEKnjTI0gxlENsDf3nKR2Yo3qoF1XCd9hhyKSnopHNHb103VQRHHLak6TXjE9D3p5Q9nwljkNvYb0dBBbhcKZUmT5Xcmi_QVmHUuwzjmZakp3mbGWD_nBQVCBrsbvdkfQ9IIkvjdyRXzVJ1-o4WhJBPekJ2orJfynLccWbP-txnNbmsZSTyx0ePgoHbdj9IyeyrtQAAAABFIwoSVr3LKdK66Zvz9mNpsoWUOdP_8u8zvo-rZiCZeEuZLU6k0p5P_gesuEFLVGWWqOpVr4QzBgDCrO_HE0tE
           tenant: dev
 
       - name: Declare some variables
