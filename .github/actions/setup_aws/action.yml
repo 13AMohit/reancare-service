@@ -73,6 +73,7 @@ runs:
       run: |
         echo "task_definition_arn=$(aws ecs describe-task-definition --task-definition ${{ inputs.task_def }} | jq '.[] | .taskDefinitionArn')" >> $GITHUB_OUTPUT
     - name: Task Defintion ARN
+      shell: bash
       run: |
         echo "Task Defintion: ${{ steps.taskdefintionvar.outputs.task_definition_arn }}"
     - name: Deploy Amazon ECS task definition using Duplo API
