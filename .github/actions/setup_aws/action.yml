@@ -28,6 +28,7 @@ runs:
         restore-keys: |
             ${{ runner.os }}-buildx-
     - name: testing
+      bash: shell
       run: aws s3 ls
       # - name: Build
       #   id: docker_build
