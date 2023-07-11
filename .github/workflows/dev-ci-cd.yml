@@ -54,6 +54,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
           task_def: ${{ secrets.TASK_DEFINTION_NAME }}
+          service_name: duploservices-dev-rcapi-new
+#           service_name: ${{ secrets.SERVICE_NAME }} 
   
 
 
