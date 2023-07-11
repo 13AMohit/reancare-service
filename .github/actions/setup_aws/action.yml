@@ -6,6 +6,8 @@ inputs:
     required: false
   duplo_token:
     required: true
+  task_def:
+    required: true
   aws-region:
     required: true
     
@@ -27,20 +29,21 @@ runs:
         key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
             ${{ runner.os }}-buildx-
-    - name: testing
-      shell: bash
-      run: aws s3 ls
-      # - name: Build
-      #   id: docker_build
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: ./
-      #     file: ./Dockerfile
-      #     builder: ${{ steps.buildx.outputs.name }}
-      #     push: true
-      #     tags: reancare/services:${{ inputs.image_tag }}
-      #     cache-from: type=local,src=/tmp/.buildx-cache
-      #     cache-to: type=local,dest=/tmp/.buildx-cache
+    - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: ./
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.image_tag }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
 
-
-
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition ${{ inputs.task_def }} \
+        --query taskDefinition > task-definition.json
