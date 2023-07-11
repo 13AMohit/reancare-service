@@ -4,12 +4,11 @@ inputs:
   image_tag:
     description: "AWS ECR image tag"
     required: false
-  aws-access-key-id:
-    required: true
-  aws-secret-access-key:
+  duplo_token:
     required: true
   aws-region:
     required: true
+    
 runs:
   using: "composite"
   steps:
@@ -17,7 +16,7 @@ runs:
       uses: duplocloud/ghactions-aws-jit@master
       with:
         duplo_host: https://reanfoundation.duplocloud.net/
-        duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
+        duplo_token: ${{ inputs.duplo_token }}
         tenant: dev
     - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
