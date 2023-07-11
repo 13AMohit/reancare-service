@@ -45,6 +45,7 @@ runs:
       shell: bash
       run: echo ${{ steps.docker_build.outputs.digest }}
     - name: Download task definition
+      shell: bash
       run: |
         aws ecs describe-task-definition --task-definition ${{ inputs.task_def }} \
         --query taskDefinition > task-definition.json
