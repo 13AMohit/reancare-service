@@ -14,11 +14,11 @@ runs:
   using: "composite"
   steps:
     - name: aws-jit
-        uses: duplocloud/ghactions-aws-jit@master
-        with:
-          duplo_host: https://reanfoundation.duplocloud.net/
-          duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
-          tenant: dev
+      uses: duplocloud/ghactions-aws-jit@master
+      with:
+        duplo_host: https://reanfoundation.duplocloud.net/
+        duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
+        tenant: dev
     - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
