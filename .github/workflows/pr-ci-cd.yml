@@ -13,6 +13,10 @@ on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   workflow_dispatch:
     
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read  
+  
 jobs:
   Build-Docker-Image:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::167414264568:role/github-oidc-role
+          role-to-assume: ${{ secrets.ROLE_ARN }}
           role-session-name: samplerolesession
           aws-region: ${{ secrets.AWS_REGION }}
 
