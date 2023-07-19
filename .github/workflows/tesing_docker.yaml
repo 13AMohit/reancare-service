@@ -1,0 +1,21 @@
+name: docker-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+        
+      - name: Run Dockle for vulnerability scan
+        id: dockle
+        uses: docker://ghcr.io/checkmarx/dockle-action:v1
+        with:
+          flags: -o json
+
+      - name: Display Dockle results
+        run: |
+          echo "${{ steps.dockle.outputs.result }}"
