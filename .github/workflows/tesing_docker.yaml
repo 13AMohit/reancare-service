@@ -10,11 +10,18 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v2
         
+      - name: Build and load
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          load: true
+          tags: user/app:test
+        
       - name: Scan for vulnerabilities
         id: scan
         uses: crazy-max/ghaction-container-scan@v2
         with:
-          image: node:18.12.0-alpine3.15
+          image: user/app:test
           dockerfile: ./Dockerfile
           annotations: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
