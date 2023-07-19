@@ -37,7 +37,7 @@ jobs:
           
 
       - name: setup aws and build image
-        uses: KansoCloud/kanso-build-and-push@ref
+        uses: KansoCloud/kanso-build-and-push@v0.1.0
         with:
           duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
