@@ -12,7 +12,7 @@ jobs:
         
       - name: Run Dockle for vulnerability scan
         id: dockle
-        uses: docker://ghcr.io/checkmarx/dockle-action:v1
+        uses: docker://checkmarx/dockle-action:v1
         with:
           flags: -o json
 
