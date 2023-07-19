@@ -23,8 +23,8 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: ${{ secrets.ROLE_ARN }}
-          role-session-name: REANRoleSession
+          role-to-assume: arn:aws:iam::167414264568:role/github-oidc-role
+          role-session-name: samplerolesession
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Declare some variables
