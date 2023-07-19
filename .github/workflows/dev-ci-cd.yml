@@ -12,6 +12,10 @@ name: module-CI-CD
 on:
   # Triggers the workflow on push events but only for the develop branch
   workflow_dispatch:
+  
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read
 
 jobs:
   Deploy-ECS:
@@ -20,7 +24,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+        
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::167414264568:role/github-oidc-role
+          role-session-name: samplerolesession
+          aws-region: ${{ secrets.AWS_REGION }}
+      - run: aws s3 ls 
+
       - name: Declare some variables
         id: vars
         shell: bash
@@ -36,14 +48,14 @@ jobs:
           echo "Repo: ${{ steps.vars.outputs.repo_name }}"
           
 
-      - name: setup aws and build image
-        uses: KansoCloud/kanso-build-and-push@v0.1.0
-        with:
-          duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
-          task_def: ${{ secrets.TASK_DEFINTION_NAME }}
-          service_name: duploservices-dev-rcapi-new
+#       - name: setup aws and build image
+#         uses: KansoCloud/kanso-build-and-push@v0.1.0
+#         with:
+#           duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
+#           aws-region: ${{ secrets.AWS_REGION }}
+#           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
+#           task_def: ${{ secrets.TASK_DEFINTION_NAME }}
+#           service_name: duploservices-dev-rcapi-new
 #           service_name: ${{ secrets.SERVICE_NAME }} 
   
 
