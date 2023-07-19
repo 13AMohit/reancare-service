@@ -41,6 +41,7 @@ jobs:
           
 
       - name: setup aws and build image
+        id: image
         uses: KansoCloud/kanso-build-and-push@v1.0.0
         with:
           Cloud: Duplo
@@ -48,6 +49,15 @@ jobs:
           duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
           task_def: ${{ secrets.TASK_DEFINTION_NAME }}
+          
+      - run: echo ${{ steps.image.outputs.image }}
+          
+          
+          
+          
+          
+          
+          
 #           duplo_token:  ${{ secrets.DUPLOCLOUD_TOKEN }}
 #           aws-region: ${{ secrets.AWS_REGION }}
 #           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
