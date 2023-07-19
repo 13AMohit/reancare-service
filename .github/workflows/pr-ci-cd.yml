@@ -11,8 +11,7 @@ name: PR-CI-CD
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
-  pull_request:
-    branches: [develop]
+  workflow_dispatch:
     
 jobs:
   Build-Docker-Image:
