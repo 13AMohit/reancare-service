@@ -45,7 +45,7 @@ jobs:
         uses: KansoCloud/kanso-build-and-push@v1.0.0
         with:
           Cloud: AWS
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-west-2
           role_arn: ${{ secrets.ROLE_ARN }}
           repo_type: private
 #           tenant: dev
