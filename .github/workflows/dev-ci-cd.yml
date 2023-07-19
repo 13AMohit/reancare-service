@@ -41,7 +41,7 @@ jobs:
           
 
       - name: setup aws and build image
-        uses: KansoCloud/kanso-build-and-push@v0.1.0
+        uses: KansoCloud/kanso-build-and-push@v1.0.0
         with:
           Cloud: Duplo
           tenant: dev
