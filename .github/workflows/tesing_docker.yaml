@@ -14,8 +14,10 @@ jobs:
         id: scan
         uses: crazy-max/ghaction-container-scan@v2
         with:
-#           image: user/app:latest
+          image: user/app:latest
           dockerfile: ./Dockerfile
+          annotations: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         
 #       - name: Run Dockle for vulnerability scan
 #         id: dockle
