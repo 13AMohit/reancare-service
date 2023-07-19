@@ -10,12 +10,19 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v2
         
-      - name: Run Dockle for vulnerability scan
-        id: dockle
-        uses: docker://checkmarx/dockle-action:v1
+      - name: Scan for vulnerabilities
+        id: scan
+        uses: crazy-max/ghaction-container-scan@v2
         with:
-          flags: -o json
+#           image: user/app:latest
+          dockerfile: ./Dockerfile
+        
+#       - name: Run Dockle for vulnerability scan
+#         id: dockle
+#         uses: docker://checkmarx/dockle-action:v1
+#         with:
+#           flags: -o json
 
-      - name: Display Dockle results
-        run: |
-          echo "${{ steps.dockle.outputs.result }}"
+#       - name: Display Dockle results
+#         run: |
+#           echo "${{ steps.dockle.outputs.result }}"
