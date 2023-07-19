@@ -44,9 +44,12 @@ jobs:
         id: image_id
         uses: KansoCloud/kanso-build-and-push@v1.0.0
         with:
-          Cloud: Duplo
-          tenant: dev
-          duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
+          Cloud: AWS
+          aws_region: ${{ secrets.AWS_REGION }}
+          role_arn: ${{ secrets.ROLE_ARN }}
+          repo_type: public
+#           tenant: dev
+#           duplo_token: ${{ secrets.DUPLOCLOUD_TOKEN }}
           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
           task_def: ${{ secrets.TASK_DEFINTION_NAME }}
           
