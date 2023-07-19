@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: testing1
-        if: ${{ github.event.inputs.test != "mohit" }}
+        if: ${{ github.event.inputs.test =! "mohit" }}
         run: echo "HI im not mohit"
 
       - name: Declare some variables
