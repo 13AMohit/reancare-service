@@ -51,8 +51,6 @@ jobs:
           image_tag: reancare-service-dev-uat:${{ steps.vars.outputs.branch }}_${{ steps.vars.outputs.sha_short }}
           task_def: ${{ secrets.TASK_DEFINTION_NAME }}
           
-      - run: echo ${{ steps.image_id.outputs.image }}
-          
           
 #           duplo_token:  ${{ secrets.DUPLOCLOUD_TOKEN }}
 #           aws-region: ${{ secrets.AWS_REGION }}
